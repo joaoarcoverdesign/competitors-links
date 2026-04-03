@@ -15,7 +15,7 @@
     padding: 48px 24px;
   }
 
-  .container { max-width: 860px; margin: 0 auto; }
+  .container { max-width: 960px; margin: 0 auto; }
 
   header { margin-bottom: 52px; }
 
@@ -43,7 +43,7 @@
     color: #555;
   }
 
-  section { margin-bottom: 44px; }
+  section { margin-bottom: 48px; }
 
   .section-header {
     display: flex;
@@ -72,18 +72,18 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 8px;
   }
 
   a.card {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
     background: #111;
     border: 0.5px solid #222;
-    border-radius: 8px;
-    padding: 12px 14px;
+    border-radius: 10px;
+    padding: 14px 16px;
     text-decoration: none;
     transition: border-color 0.15s, background 0.15s;
   }
@@ -93,7 +93,14 @@
     background: #121510;
   }
 
-  .card-left { display: flex; flex-direction: column; gap: 3px; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .card-title-group { display: flex; flex-direction: column; gap: 2px; }
 
   .card-name {
     font-size: 14px;
@@ -106,7 +113,7 @@
 
   .card-url {
     font-size: 11px;
-    color: #444;
+    color: #3a3a3a;
     font-family: 'SF Mono', 'Fira Code', monospace;
   }
 
@@ -114,6 +121,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-shrink: 0;
   }
 
   .card-tag {
@@ -137,6 +145,33 @@
   }
 
   a.card:hover .arrow { color: #C8F135; transform: translate(2px, -2px); }
+
+  .card-desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.55;
+  }
+
+  .card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 2px;
+  }
+
+  .pill {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .pill-price { background: #181818; color: #C8F135; border: 0.5px solid #2a2a1a; }
+  .pill-turna { background: #181818; color: #888;    border: 0.5px solid #252525; }
+  .pill-model { background: #181818; color: #888;    border: 0.5px solid #252525; }
+  .pill-warn  { background: #1a1008; color: #aa7030; border: 0.5px solid #2e2010; }
+  .pill-good  { background: #0d1a0a; color: #5a9a40; border: 0.5px solid #1a2e10; }
+  .pill-alert { background: #1a0a0a; color: #aa4040; border: 0.5px solid #2e1010; }
 
   footer {
     margin-top: 60px;
@@ -167,112 +202,183 @@
     <div class="grid">
 
       <a class="card" href="https://nobreakdesign.com.br" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Nobreak Design</span>
-          <span class="card-url">nobreakdesign.com.br</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Nobreak Design</span>
+            <span class="card-url">nobreakdesign.com.br</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Flat-rate com plataforma própria e foco em gráfico/social media. Maior escala do BR — +11.200 pedidos/mês. Inclui geração de imagem via IA e trial de 7 dias. Dois planos com preço público.</p>
+        <div class="card-footer">
+          <span class="pill pill-price">R$ 497 Starter</span>
+          <span class="pill pill-price">R$ 1.497 Standard</span>
+          <span class="pill pill-turna">Next business day</span>
+          <span class="pill pill-good">Preço público</span>
+          <span class="pill pill-good">App próprio</span>
         </div>
       </a>
 
       <a class="card" href="https://designerpro.app" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">DesignerPRO</span>
-          <span class="card-url">designerpro.app</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">DesignerPRO</span>
+            <span class="card-url">designerpro.app</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Pioneiro no modelo de créditos no Brasil — sem mensalidade fixa. Cobre design gráfico e vídeo. Revisões ilimitadas, multi-marca, aprovação por gerente de operações. 97% de satisfação reportada.</p>
+        <div class="card-footer">
+          <span class="pill pill-price">R$ 40/crédito</span>
+          <span class="pill pill-turna">24h</span>
+          <span class="pill pill-good">Sem mensalidade</span>
+          <span class="pill pill-good">Créditos não expiram</span>
+          <span class="pill pill-good">App próprio</span>
         </div>
       </a>
 
       <a class="card" href="https://hubee.co" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Hubee</span>
-          <span class="card-url">hubee.co</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Hubee</span>
+            <span class="card-url">hubee.co</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Player mais enterprise do BR. Plataforma própria robusta, 70k+ designs entregues. Clientes de referência: Arezzo, RD Station, Descomplica, 123Milhas. Site em PT e EN. Foco em volume e qualidade consistente.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço não público</span>
+          <span class="pill pill-turna">1 dia útil</span>
+          <span class="pill pill-good">50+ marcas</span>
+          <span class="pill pill-good">70k+ designs</span>
+          <span class="pill pill-good">App próprio</span>
         </div>
       </a>
 
       <a class="card" href="https://voorus.com.br" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Voorus</span>
-          <span class="card-url">voorus.com.br</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Voorus</span>
+            <span class="card-url">voorus.com.br</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR / Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Modelo por horas produtivas sem mensalidade recorrente. Créditos não expiram. Time full-stack com assessor sênior dedicado. Opera desde 2019. Atende em PT, EN e ES. Preço em USD — barreira para PMEs brasileiras.</p>
+        <div class="card-footer">
+          <span class="pill pill-price">USD 905 · 64h</span>
+          <span class="pill pill-price">USD 1.495 · 96h</span>
+          <span class="pill pill-turna">48h</span>
+          <span class="pill pill-good">Sem mensalidade</span>
+          <span class="pill pill-good">Desde 2019</span>
+          <span class="pill pill-alert">Cobra em USD</span>
         </div>
       </a>
 
       <a class="card" href="https://genuy.co" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Genuy</span>
-          <span class="card-url">genuy.co</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Genuy</span>
+            <span class="card-url">genuy.co</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Flat-rate com 3 tiers voltado para agências e times de marketing. Inclui motion graphics e layout de sites. Plataforma própria. Venda via demo agendada. Pouca visibilidade de marca no mercado.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço não público</span>
+          <span class="pill pill-turna">1–2 dias</span>
+          <span class="pill pill-good">App próprio</span>
+          <span class="pill pill-model">Foco em agências</span>
+          <span class="pill pill-model">Motion incluso</span>
         </div>
       </a>
 
       <a class="card" href="https://outcase.com.br" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Outcase</span>
-          <span class="card-url">outcase.com.br</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Outcase</span>
+            <span class="card-url">outcase.com.br</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Ativa desde 2018. Planos Start, Pro e Master com escopo crescente — do gráfico básico até web design e estratégia digital. Painel próprio de acompanhamento. Cancelamento sem burocracia e sem reembolso.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço não público</span>
+          <span class="pill pill-good">Desde 2018</span>
+          <span class="pill pill-good">Painel próprio</span>
+          <span class="pill pill-model">Start / Pro / Master</span>
         </div>
       </a>
 
       <a class="card" href="https://snapdesign.com.br" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Snap Design</span>
-          <span class="card-url">snapdesign.com.br</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Snap Design</span>
+            <span class="card-url">snapdesign.com.br</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR / Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Equipe distribuída entre Brasil, EUA e Canadá. 100+ clientes atendidos. Opera 7 dias por semana. Atende até 2 marcas por plano sem custo extra. Workflow via Trello ou WhatsApp. Sem vídeo/motion no escopo.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço não público</span>
+          <span class="pill pill-turna">48h · 7 dias/sem</span>
+          <span class="pill pill-good">100+ clientes</span>
+          <span class="pill pill-model">Trello / WhatsApp</span>
+          <span class="pill pill-alert">Sem motion/vídeo</span>
         </div>
       </a>
 
       <a class="card" href="https://studio360design.com.br" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Studio 360 Design</span>
-          <span class="card-url">studio360design.com.br</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Studio 360 Design</span>
+            <span class="card-url">studio360design.com.br</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Squad dedicado exclusivo por cliente — modelo de agência 360°. Entrega simples no mesmo dia. 10+ anos de experiência. Foco em empresas que querem delegar criação completa. Sem plataforma proprietária.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço não público</span>
+          <span class="pill pill-turna">Mesmo dia (simples)</span>
+          <span class="pill pill-good">10+ anos</span>
+          <span class="pill pill-good">Squad dedicado</span>
+          <span class="pill pill-model">WhatsApp / Trello</span>
         </div>
       </a>
 
       <a class="card" href="https://designguy.com.br" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">DesignGuy</span>
-          <span class="card-url">designguy.com.br</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">DesignGuy</span>
+            <span class="card-url">designguy.com.br</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-solo">Solo</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-solo">Solo</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">O "DesignJoy brasileiro". Fundador com 20+ anos nas maiores agências globais (AlmapBBDO, VMLY&R, DM9DDB) e clientes como Coca-Cola, Havaianas e VW. Premiado em Cannes Lions e El Ojo. Sem motion, dev ou plataforma própria.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço não público</span>
+          <span class="pill pill-turna">48h</span>
+          <span class="pill pill-good">Cannes Lions · El Ojo</span>
+          <span class="pill pill-model">Solo · Trello</span>
+          <span class="pill pill-alert">Sem motion/dev</span>
         </div>
       </a>
 
       <a class="card" href="https://tonykarlos.com/design-por-assinatura" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Tony Karlos</span>
-          <span class="card-url">tonykarlos.com</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Tony Karlos</span>
+            <span class="card-url">tonykarlos.com</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-solo">Solo</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-solo">Solo</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Único player BR com preço público detalhado por capacidade de horas mensais. Totalmente solo e transparente. Vídeo incluso (até 60s). Mínimo 15 demandas básicas/intermediárias/mês. Revisões ilimitadas sem custo extra.</p>
+        <div class="card-footer">
+          <span class="pill pill-price">R$ 2.720 · 32h</span>
+          <span class="pill pill-price">R$ 4.690 · 64h</span>
+          <span class="pill pill-price">R$ 8.320 · 128h</span>
+          <span class="pill pill-turna">48h úteis</span>
+          <span class="pill pill-good">Preço público</span>
+          <span class="pill pill-alert">Single person</span>
         </div>
       </a>
 
@@ -288,112 +394,177 @@
     <div class="grid">
 
       <a class="card" href="https://designjoy.co" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">DesignJoy</span>
-          <span class="card-url">designjoy.co</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">DesignJoy</span>
+            <span class="card-url">designjoy.co</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-gl">Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">O player que popularizou o modelo DaaS. Fundador Brett Williams trabalha sozinho. Inclui desenvolvimento em Webflow além do design. Um pedido por vez. Referência de branding e posicionamento para todo o segmento.</p>
+        <div class="card-footer">
+          <span class="pill pill-price">USD 5.995/mês</span>
+          <span class="pill pill-turna">~48h</span>
+          <span class="pill pill-good">Inclui Webflow</span>
+          <span class="pill pill-good">Desde 2017</span>
+          <span class="pill pill-alert">Solo · 1 pedido/vez</span>
         </div>
       </a>
 
       <a class="card" href="https://superside.com" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Superside</span>
-          <span class="card-url">superside.com</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Superside</span>
+            <span class="card-url">superside.com</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-gl">Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Player enterprise mais completo do mercado global. 70.000+ marcas atendidas, 20+ categorias de serviço. AI-enhanced com plataforma proprietária Superspace. Cobertura 24/7. Clientes: Microsoft, Reddit, Cisco, Grubhub.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço sob consulta</span>
+          <span class="pill pill-turna">12–48h</span>
+          <span class="pill pill-good">AI-enhanced</span>
+          <span class="pill pill-good">24/7 · Global</span>
+          <span class="pill pill-good">70k+ marcas</span>
         </div>
       </a>
 
       <a class="card" href="https://passionates.com" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Passionates</span>
-          <span class="card-url">passionates.com</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Passionates</span>
+            <span class="card-url">passionates.com</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-gl">Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Único player global com combo CRO + Design + AI em um único serviço. Posicionamento premium boutique. Inclui UX research e otimização de conversão além de design visual. Poucos dados públicos disponíveis.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço sob consulta</span>
+          <span class="pill pill-good">CRO + UX + AI</span>
+          <span class="pill pill-good">UX Research incluso</span>
+          <span class="pill pill-model">Boutique premium</span>
         </div>
       </a>
 
       <a class="card" href="https://designpickle.com" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Design Pickle</span>
-          <span class="card-url">designpickle.com</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Design Pickle</span>
+            <span class="card-url">designpickle.com</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-gl">Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Um dos maiores do mercado global. 320+ designers, 3M+ designs entregues, 94% de retenção em 18 meses. 12 categorias de serviço incluindo vídeo e AI. Referência em retenção de clientes no segmento.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço sob consulta</span>
+          <span class="pill pill-turna">~24h</span>
+          <span class="pill pill-good">94% retenção</span>
+          <span class="pill pill-good">3M+ designs</span>
+          <span class="pill pill-model">320+ designers</span>
         </div>
       </a>
 
       <a class="card" href="https://designforce.co" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Design Force</span>
-          <span class="card-url">designforce.co</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Design Force</span>
+            <span class="card-url">designforce.co</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-gl">Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Baseado em Irvine, EUA. Modelo de assinatura escalável com turnaround rápido. Poucos dados públicos disponíveis — baixa diferenciação visível no mercado. Vale monitorar evolução do posicionamento.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço não público</span>
+          <span class="pill pill-model">USA · Irvine</span>
+          <span class="pill pill-alert">Dados limitados</span>
         </div>
       </a>
 
       <a class="card" href="https://manypixels.co" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">ManyPixels</span>
-          <span class="card-url">manypixels.co</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">ManyPixels</span>
+            <span class="card-url">manypixels.co</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-gl">Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Referência de entrada no mercado global. 3.000+ clientes, 150.000+ designs entregues. Sem contratos, matching imediato, motion/vídeo incluído. Baseado em Singapura. Clientes: Decathlon, Banco Europeu de Investimento.</p>
+        <div class="card-footer">
+          <span class="pill pill-price">A partir de USD 499</span>
+          <span class="pill pill-turna">1–2 dias</span>
+          <span class="pill pill-good">3k+ clientes</span>
+          <span class="pill pill-good">Sem contrato</span>
+          <span class="pill pill-model">Singapura · Global</span>
         </div>
       </a>
 
       <a class="card" href="https://kimp.io" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Kimp</span>
-          <span class="card-url">kimp.io</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Kimp</span>
+            <span class="card-url">kimp.io</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-gl">Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Maior equipe interna do segmento (275+ designers in-house). Melhor avaliação pública: 4.9 Trustpilot. 5.000+ clientes, 600.000+ designs. Plano combinado gráfico + vídeo. Plataforma KIMP360. Clientes: Harley Davidson, Universal.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço sob cadastro</span>
+          <span class="pill pill-turna">24h</span>
+          <span class="pill pill-good">4.9 Trustpilot</span>
+          <span class="pill pill-good">275+ designers</span>
+          <span class="pill pill-good">600k+ designs</span>
         </div>
       </a>
 
       <a class="card" href="https://uxstudioteam.com" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">UX Studio</span>
-          <span class="card-url">uxstudioteam.com</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">UX Studio</span>
+            <span class="card-url">uxstudioteam.com</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-gl">Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Único player global com foco exclusivo em UX/produto digital. 10+ anos, 40+ especialistas, modelo de time embarcado. Research-driven com AI UX integrado. Não é subscription — é retainer por projeto. Clientes: Samsung, Netflix, Google, Cisco, ONU.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço sob consulta</span>
+          <span class="pill pill-good">UX especializado</span>
+          <span class="pill pill-good">Samsung · Netflix · Google</span>
+          <span class="pill pill-model">Retainer · project-based</span>
         </div>
       </a>
 
       <a class="card" href="https://fstr.design" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">FSTR</span>
-          <span class="card-url">fstr.design</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">FSTR</span>
+            <span class="card-url">fstr.design</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR / Global</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-gl">Global</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Player brasileiro com posicionamento moderno e site em Framer. Foco em extensão de time (team extension). Nicho ainda em formação com poucos dados públicos. Brand identity diferenciada. Potencial concorrente direto a monitorar de perto.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço não público</span>
+          <span class="pill pill-good">Brand diferenciada</span>
+          <span class="pill pill-model">Framer · Team extension</span>
+          <span class="pill pill-model">BR / Global</span>
         </div>
       </a>
 
       <a class="card" href="https://homemmaquina.com.br/design-team-as-a-service-conheca-o-design-por-assinatura" target="_blank" rel="noopener">
-        <div class="card-left">
-          <span class="card-name">Homem Máquina</span>
-          <span class="card-url">homemmaquina.com.br</span>
+        <div class="card-top">
+          <div class="card-title-group">
+            <span class="card-name">Homem Máquina</span>
+            <span class="card-url">homemmaquina.com.br</span>
+          </div>
+          <div class="card-right"><span class="card-tag tag-br">BR</span><span class="arrow">↗</span></div>
         </div>
-        <div class="card-right">
-          <span class="card-tag tag-br">BR</span>
-          <span class="arrow">↗</span>
+        <p class="card-desc">Único player BR com foco declarado em UX/produto digital por assinatura. Modelos Full-time, Part-time e pacotes de horas mensais. Designer sênior (15+ anos) revisando todas as entregas com SLA transparente. Concorrente direto para Design System as a Service.</p>
+        <div class="card-footer">
+          <span class="pill pill-warn">Preço sob consulta</span>
+          <span class="pill pill-good">UX/produto digital</span>
+          <span class="pill pill-good">Sênior incluso</span>
+          <span class="pill pill-alert">Concorrente direto</span>
+          <span class="pill pill-model">Full / Part / Horas</span>
         </div>
       </a>
 
