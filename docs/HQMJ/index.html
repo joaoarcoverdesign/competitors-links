@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HQMJ – Help Me Quit My Job</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    * { font-family: 'Inter', system-ui, sans-serif; }
+    h1, h2, .font-display { font-family: 'Manrope', sans-serif; }
+
+    body { background-color: #cfddea; }
+
+    .bg-mesh {
+      background-color: #cfddea;
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(180, 210, 240, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(200, 180, 230, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 30%, rgba(160, 220, 200, 0.3) 0%, transparent 40%);
+      min-height: 100vh;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow:
+        rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    }
+
+    .glass-light {
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: #000;
+      color: #fff;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      box-shadow:
+        0 2.8px 2.2px rgba(0,0,0,0.034),
+        0 6.7px 5.3px rgba(0,0,0,0.048),
+        0 12.5px 10px rgba(0,0,0,0.06),
+        0 22.3px 17.9px rgba(0,0,0,0.072),
+        0 41.8px 33.4px rgba(0,0,0,0.086),
+        0 100px 80px rgba(0,0,0,0.12);
+    }
+    .btn-primary:hover { background: #111; transform: scale(1.03); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: #fff;
+      color: #000;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 1px solid rgba(0,0,0,0.1);
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: #f5f5f5; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+    .animate-fade-in { animation: fadeIn 0.9s ease-out forwards; opacity: 0; }
+    .animate-slide-up { animation: slideUp 0.9s ease-out forwards; opacity: 0; transform: translateY(24px); }
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-600 { animation-delay: 0.6s; }
+    .delay-700 { animation-delay: 0.7s; }
+    .delay-800 { animation-delay: 0.8s; }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+    @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+    .step-number {
+      font-family: 'Manrope', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1;
+      color: rgba(0,0,0,0.07);
+      position: absolute;
+      top: -0.5rem;
+      left: 1rem;
+    }
+
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s ease; }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.875rem 1.5rem !important;
+      min-height: 52px;
+      border-radius: 0.875rem;
+      border: 1.5px solid rgba(0,0,0,0.13);
+      background: rgba(255,255,255,0.8);
+      font-size: 1rem;
+      color: #0f0f0f;
+      line-height: 1.5;
+      transition: all 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24' stroke='%23666' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.75rem;
+    }
+    textarea {
+      min-height: 130px;
+      resize: none;
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(0,0,0,0.35);
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(0,0,0,0.45);
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
+    }
+
+    .project-card {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover { transform: translateY(-4px); }
+
+    .tag {
+      display: inline-flex;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .floating-badge {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+
+<body class="bg-mesh antialiased text-[#0f0f0f]">
+
+  <!-- Fixed background blobs -->
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute w-[600px] h-[600px] rounded-full bg-purple-200/30 blur-3xl -top-48 -right-48"></div>
+    <div class="absolute w-[500px] h-[500px] rounded-full bg-blue-200/40 blur-3xl -bottom-32 -left-32"></div>
+    <div class="absolute w-[400px] h-[400px] rounded-full bg-green-100/30 blur-3xl top-1/2 left-1/2 -translate-x-1/2"></div>
+  </div>
+
+  <!-- ─── NAV ─── -->
+  <nav class="sticky top-0 z-50 glass-light border-b border-white/40 py-4">
+    <div class="mx-auto max-w-7xl px-6 flex items-center justify-between">
+      <a href="#" class="font-display font-bold text-lg tracking-tight">HQMJ</a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+        <a href="#o-que-faco" class="hover:text-black transition-colors">O que faço</a>
+        <a href="#como-funciona" class="hover:text-black transition-colors">Como funciona</a>
+        <a href="#faq" class="hover:text-black transition-colors">FAQ</a>
+        <a href="#tenho-interesse" class="btn-primary py-2.5 px-6 text-sm">Tenho interesse</a>
+      </div>
+      <a href="#tenho-interesse" class="md:hidden btn-primary py-2.5 px-5 text-sm">Interesse</a>
+    </div>
+  </nav>
+
+  <main class="mx-auto max-w-7xl px-6 pb-32 pt-8 space-y-24">
+
+    <!-- ─── HERO ─── -->
+    <section id="hero">
+      <div class="glass rounded-3xl p-8 md:p-16 lg:p-20 overflow-hidden relative">
+
+        <!-- Decorative blob inside card -->
+        <div class="absolute top-0 right-0 w-80 h-80 bg-purple-100/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center relative">
+          <div>
+            <!-- Pill badge -->
+            <div class="flex items-center gap-3 bg-[#f1f2f3] rounded-full px-4 py-2 w-max mb-8 animate-slide-up">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span class="text-sm font-medium">1 slot disponível agora</span>
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.05] tracking-tight animate-slide-up delay-100">
+              Help Me<br/>
+              <span class="relative inline-block">
+                Quit My
+                <svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 240 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 8 C60 2, 180 2, 236 8" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <br/>Job.
+            </h1>
+
+            <p class="text-lg text-gray-600 max-w-xl mt-8 animate-slide-up delay-300 leading-relaxed">
+              Design SaaS sob demanda por <strong class="text-black">US$ 1.000/mês</strong>. Um designer dedicado, entregas rápidas e um fluxo simples para o seu produto digital.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-10 animate-slide-up delay-400">
+              <a href="#tenho-interesse" class="btn-primary">
+                Tenho interesse
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </a>
+              <a href="#como-funciona" class="btn-secondary">
+                Como funciona
+              </a>
+            </div>
+
+            <!-- Social proof row -->
+            <div class="flex flex-wrap items-center gap-6 mt-12 animate-slide-up delay-500">
+              <div class="flex items-center gap-2">
+                <div class="flex text-yellow-400">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+                <span class="text-sm font-medium">Entregas rápidas</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm font-medium">
+                <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                Revisões ilimitadas
+              </div>
+              <div class="flex items-center gap-2 text-sm font-medium">
+                <svg class="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                PT · ES · EN
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side: floating cards -->
+          <div class="hidden lg:flex flex-col gap-5 relative">
+            <div class="glass rounded-2xl p-5 floating-badge" style="animation-delay: 0s;">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-sm">1–3 dias úteis</p>
+                  <p class="text-xs text-gray-500">Para a maioria das tarefas</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-2xl p-5 ml-8 floating-badge" style="animation-delay: 1.3s;">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white shadow-sm rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-sm">Design System no Figma</p>
+                  <p class="text-xs text-gray-500">Componentes + tokens</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-2xl p-5 floating-badge" style="animation-delay: 2.5s;">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white shadow-sm rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-sm">US$ 1.000 / mês</p>
+                  <p class="text-xs text-gray-500">Cancele quando quiser</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass rounded-2xl p-5 ml-8 floating-badge" style="animation-delay: 0.8s;">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 bg-white shadow-sm rounded-full flex items-center justify-center flex-shrink-0">
+                  <svg class="w-5 h-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-sm">Pedidos via Trello</p>
+                  <p class="text-xs text-gray-500">Fila priorizada, async</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── O QUE EU FAÇO ─── -->
+    <section id="o-que-faco">
+      <div class="text-center mb-12 animate-slide-up">
+        <span class="tag bg-black text-white mb-4">O que eu faço</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold mt-3 tracking-tight">Design que move startups</h2>
+        <p class="text-gray-600 mt-4 max-w-xl mx-auto leading-relaxed">
+          Ajudo produtos digitais a tirarem ideias do papel com design consistente — sem a dor de cabeça de contratar um time interno.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="glass rounded-2xl p-7 hover:shadow-xl transition-all hover:-translate-y-1 animate-slide-up delay-100">
+          <div class="w-12 h-12 bg-white shadow-sm rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-2">UI/UX para SaaS</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Interfaces de produto que são bonitas e fáceis de usar.</p>
+        </div>
+
+        <div class="glass rounded-2xl p-7 hover:shadow-xl transition-all hover:-translate-y-1 animate-slide-up delay-200">
+          <div class="w-12 h-12 bg-white shadow-sm rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-2">Conversão</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Landing pages com hierarquia visual e CTA que convertem.</p>
+        </div>
+
+        <div class="glass rounded-2xl p-7 hover:shadow-xl transition-all hover:-translate-y-1 animate-slide-up delay-300">
+          <div class="w-12 h-12 bg-white shadow-sm rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-2">Dashboards</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Áreas logadas e dashboards com dados claros e navegação simples.</p>
+        </div>
+
+        <div class="glass rounded-2xl p-7 hover:shadow-xl transition-all hover:-translate-y-1 animate-slide-up delay-400">
+          <div class="w-12 h-12 bg-white shadow-sm rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+          </div>
+          <h3 class="font-semibold text-base mb-2">Design Systems</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Componentes e tokens no Figma para escalar com consistência.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TRABALHOS ─── -->
+    <section id="trabalhos">
+      <div class="text-center mb-12">
+        <span class="tag bg-[#f1f2f3] text-gray-700 mb-4">Trabalhos em Destaque</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold mt-3 tracking-tight">Projetos reais, resultados reais</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Project 1 -->
+        <div class="project-card glass animate-slide-up delay-100">
+          <div class="h-52 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center opacity-10">
+              <div class="grid grid-cols-4 gap-2 p-4 w-full">
+                <div class="h-8 bg-blue-600 rounded"></div><div class="h-8 bg-blue-400 rounded col-span-3"></div>
+                <div class="h-24 bg-blue-500 rounded col-span-2"></div><div class="h-24 bg-blue-300 rounded col-span-2"></div>
+                <div class="h-6 bg-blue-400 rounded col-span-4"></div>
+              </div>
+            </div>
+            <div class="relative z-10 text-center">
+              <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-2">
+                <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+              <span class="text-xs font-semibold text-blue-700 bg-blue-100 px-3 py-1 rounded-full">Dashboard SaaS</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display font-semibold text-lg mb-2">Plataforma SaaS de Gestão</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">Redesign completo de dashboard com foco em clareza de dados e navegação mais simples — reduzindo o tempo médio de tarefa em 40%.</p>
+            <div class="flex gap-2 mt-4">
+              <span class="tag bg-white border border-gray-200 text-gray-700">UI/UX</span>
+              <span class="tag bg-white border border-gray-200 text-gray-700">Figma</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card glass animate-slide-up delay-200">
+          <div class="h-52 bg-gradient-to-br from-purple-100 to-pink-100 flex items-center justify-center relative overflow-hidden">
+            <div class="relative z-10 text-center">
+              <div class="w-14 h-14 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-2">
+                <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <span class="text-xs font-semibold text-purple-700 bg-purple-100 px-3 py-1 rounded-full">Landing Page</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display font-semibold text-lg mb-2">Landing para Startup B2B</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">Estrutura de landing com hierarquia visual clara, prova social e formulário otimizado — aumentando a taxa de conversão em 3x.</p>
+            <div class="flex gap-2 mt-4">
+              <span class="tag bg-white border border-gray-200 text-gray-700">Conversão</span>
+              <span class="tag bg-white border border-gray-200 text-gray-700">B2B</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card glass animate-slide-up delay-300">
+          <div class="h-52 bg-gradient-to-br from-green-100 to-teal-100 flex items-center justify-center relative overflow-hidden">
+            <div class="relative z-10 text-center">
+              <div class="w-14 h-14 bg-green-600 rounded-2xl flex items-center justify-center mx-auto mb-2">
+                <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+              </div>
+              <span class="text-xs font-semibold text-green-700 bg-green-100 px-3 py-1 rounded-full">Design System</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-display font-semibold text-lg mb-2">Design System para Produto em Crescimento</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">Biblioteca de componentes e tokens no Figma que triplicou a velocidade de entrega do time de dev — sem perder consistência visual.</p>
+            <div class="flex gap-2 mt-4">
+              <span class="tag bg-white border border-gray-200 text-gray-700">Design System</span>
+              <span class="tag bg-white border border-gray-200 text-gray-700">Scale</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── COMO FUNCIONA ─── -->
+    <section id="como-funciona">
+      <div class="glass rounded-3xl p-8 md:p-16">
+        <div class="text-center mb-16">
+          <span class="tag bg-black text-white mb-4">Como funciona</span>
+          <h2 class="text-4xl lg:text-5xl font-display font-bold mt-3 tracking-tight">Simples como deve ser</h2>
+          <p class="text-gray-600 mt-4 max-w-lg mx-auto">O modelo SaaS de design que funciona de verdade para startups.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="relative">
+            <div class="step-number">1</div>
+            <div class="pt-16 pl-4">
+              <h3 class="font-semibold text-base mb-2">Assine o plano</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Plano fixo de <strong>US$ 1.000/mês</strong> — sem surpresas, sem contrato longo.</p>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="step-number">2</div>
+            <div class="pt-16 pl-4">
+              <h3 class="font-semibold text-base mb-2">Envie seus pedidos</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Via board no Trello. Um pedido ativo por vez, fila priorizada.</p>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="step-number">3</div>
+            <div class="pt-16 pl-4">
+              <h3 class="font-semibold text-base mb-2">Receba o design</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Entregas em <strong>1–3 dias</strong> para tarefas simples, 3–5 para telas complexas.</p>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="step-number">4</div>
+            <div class="pt-16 pl-4">
+              <h3 class="font-semibold text-base mb-2">Revise à vontade</h3>
+              <p class="text-sm text-gray-600 leading-relaxed">Revisões ilimitadas dentro do escopo. Sem custo extra.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── O QUE ESTÁ INCLUÍDO ─── -->
+    <section id="incluso">
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Included -->
+        <div class="glass rounded-3xl p-8 md:p-12">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 bg-white shadow-sm rounded-xl flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h2 class="font-display font-bold text-2xl">O que está incluído</h2>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-sm leading-relaxed">Design de interfaces (web e SaaS)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-sm leading-relaxed">Componentes e design system no Figma</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-sm leading-relaxed">Landing pages e telas de onboarding</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-sm leading-relaxed">Suporte assíncrono por e-mail ou Slack</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg class="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <span class="text-sm leading-relaxed">Revisões ilimitadas + pedidos ilimitados na fila</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Not included -->
+        <div class="flex flex-col gap-6">
+          <div class="glass rounded-3xl p-8 md:p-10">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-10 h-10 bg-white shadow-sm rounded-xl flex items-center justify-center">
+                <svg class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              </div>
+              <h2 class="font-display font-bold text-2xl">Não incluso</h2>
+            </div>
+            <ul class="space-y-3 text-sm text-gray-500">
+              <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0"></span>Desenvolvimento (código)</li>
+              <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0"></span>Motion / animações avançadas</li>
+              <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0"></span>Copywriting completo</li>
+              <li class="flex items-center gap-2.5"><span class="w-1.5 h-1.5 bg-gray-400 rounded-full flex-shrink-0"></span>Branding do zero (orçamento separado)</li>
+            </ul>
+            <p class="text-xs text-gray-400 mt-5">Esses serviços podem ser cotados separadamente.</p>
+          </div>
+
+          <!-- Pricing highlight -->
+          <div class="bg-black text-white rounded-3xl p-8 md:p-10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/4"></div>
+            <p class="text-sm text-gray-400 mb-1">Plano único</p>
+            <div class="flex items-baseline gap-2">
+              <span class="font-display font-bold text-5xl">US$1.000</span>
+              <span class="text-gray-400">/ mês</span>
+            </div>
+            <p class="text-sm text-gray-400 mt-3">Cancele com 14 dias de aviso. Sem fidelidade.</p>
+            <a href="#tenho-interesse" class="btn-secondary mt-6 w-full text-center block">Começar agora</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PARA QUEM ─── -->
+    <section id="para-quem">
+      <div class="text-center mb-12">
+        <span class="tag bg-[#f1f2f3] text-gray-700 mb-4">Para quem é</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold mt-3 tracking-tight">Feito para quem move rápido</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass rounded-2xl p-8 hover:shadow-xl transition-all hover:-translate-y-1">
+          <div class="w-12 h-12 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-xl mb-2">Startups em MVP</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Precisa de um primeiro design sólido para validar a ideia e impressionar investidores — sem montar um time ainda.</p>
+        </div>
+
+        <div class="glass rounded-2xl p-8 hover:shadow-xl transition-all hover:-translate-y-1">
+          <div class="w-12 h-12 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-xl mb-2">Produtos em crescimento</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Produto funcionando, mas o design não acompanhou a velocidade. Precisa de consistência e cobertura contínua.</p>
+        </div>
+
+        <div class="glass rounded-2xl p-8 hover:shadow-xl transition-all hover:-translate-y-1">
+          <div class="w-12 h-12 bg-white shadow-sm rounded-2xl flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <h3 class="font-display font-semibold text-xl mb-2">Times enxutos</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">Não quer contratar um designer full-time ainda — mas precisa de design de qualidade agora, sem overhead.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FAQ ─── -->
+    <section id="faq">
+      <div class="glass rounded-3xl p-8 md:p-16">
+        <div class="text-center mb-14">
+          <span class="tag bg-black text-white mb-4">FAQ</span>
+          <h2 class="text-4xl lg:text-5xl font-display font-bold mt-3 tracking-tight">Perguntas frequentes</h2>
+        </div>
+
+        <div class="max-w-3xl mx-auto space-y-4">
+          <details class="glass-light rounded-2xl overflow-hidden group">
+            <summary class="flex items-center justify-between p-6 font-semibold text-sm">
+              Quanto custa?
+              <svg class="faq-icon w-5 h-5 flex-shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-white/40 pt-4">
+              O plano custa <strong class="text-black">US$ 1.000 por mês</strong>. Plano único, sem tiers, sem pegadinhas. Você sabe exatamente o que paga.
+            </div>
+          </details>
+
+          <details class="glass-light rounded-2xl overflow-hidden group">
+            <summary class="flex items-center justify-between p-6 font-semibold text-sm">
+              Posso cancelar quando quiser?
+              <svg class="faq-icon w-5 h-5 flex-shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-white/40 pt-4">
+              Sim. Você pode cancelar a qualquer momento, com aviso prévio de <strong class="text-black">14 dias</strong>. Sem multa, sem burocracia.
+            </div>
+          </details>
+
+          <details class="glass-light rounded-2xl overflow-hidden group">
+            <summary class="flex items-center justify-between p-6 font-semibold text-sm">
+              Qual o prazo médio das primeiras entregas?
+              <svg class="faq-icon w-5 h-5 flex-shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-white/40 pt-4">
+              Entre <strong class="text-black">1 a 3 dias úteis</strong> para tarefas simples (ícones, banners, ajustes de tela), e <strong class="text-black">3 a 5 dias úteis</strong> para telas mais complexas (fluxo de onboarding, dashboard completo, etc.).
+            </div>
+          </details>
+
+          <details class="glass-light rounded-2xl overflow-hidden group">
+            <summary class="flex items-center justify-between p-6 font-semibold text-sm">
+              Atende em português, espanhol e inglês?
+              <svg class="faq-icon w-5 h-5 flex-shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-white/40 pt-4">
+              Sim. A comunicação pode ser feita em <strong class="text-black">PT, ES ou EN</strong> — fale no idioma que for mais confortável para você e seu time.
+            </div>
+          </details>
+
+          <details class="glass-light rounded-2xl overflow-hidden group">
+            <summary class="flex items-center justify-between p-6 font-semibold text-sm">
+              Como funciona a fila de pedidos?
+              <svg class="faq-icon w-5 h-5 flex-shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6 text-sm text-gray-600 leading-relaxed border-t border-white/40 pt-4">
+              Você envia quantos pedidos quiser para a fila, mas trabalho em <strong class="text-black">um pedido ativo por vez</strong>. Assim consigo manter a qualidade e a velocidade em cada entrega.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FORMULÁRIO ─── -->
+    <section id="tenho-interesse">
+      <div class="glass rounded-3xl p-8 md:p-16 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-blue-100/30 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+
+        <div class="relative max-w-2xl mx-auto">
+          <div class="text-center mb-12">
+            <span class="tag bg-black text-white mb-4">Tenho interesse</span>
+            <h2 class="text-4xl lg:text-5xl font-display font-bold mt-3 tracking-tight">Vamos conversar?</h2>
+            <p class="text-gray-600 mt-4 leading-relaxed">Se quiser entender se esse modelo faz sentido para sua startup, preencha o formulário e eu entro em contato em até 24h.</p>
+          </div>
+
+          <form id="interest-form" class="space-y-6" onsubmit="handleSubmit(event)">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-medium mb-2">Nome</label>
+                <input type="text" placeholder="Seu nome" required />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">E-mail</label>
+                <input type="email" placeholder="você@startup.com" required />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-2">Nome da startup</label>
+              <input type="text" placeholder="Nome da sua startup" required />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-2">Estágio do seu SaaS</label>
+              <select required>
+                <option value="" disabled selected>Selecione o estágio</option>
+                <option value="mvp">MVP (validando a ideia)</option>
+                <option value="crescimento">Crescimento (já tem usuários)</option>
+                <option value="escala">Escala (produto maduro)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-2">Principal desafio de design hoje</label>
+              <textarea rows="4" placeholder="Descreva o seu maior desafio de design agora..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary w-full justify-center text-base">
+              Tenho interesse
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </button>
+
+            <p class="text-xs text-center text-gray-500">Resposta em até 24h úteis. Sem spam.</p>
+          </form>
+
+          <!-- Success state (hidden by default) -->
+          <div id="form-success" class="hidden text-center py-12">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-2xl mb-2">Interesse registrado!</h3>
+            <p class="text-gray-600">Entro em contato em até 24h úteis. Fique de olho no seu e-mail.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="border-t border-white/30 glass-light py-12">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <p class="font-display font-bold text-lg tracking-tight">HQMJ</p>
+          <p class="text-sm text-gray-500 mt-1">Design SaaS sob demanda para startups</p>
+        </div>
+        <div class="flex items-center gap-6 text-sm text-gray-500">
+          <a href="#" class="hover:text-black transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="#" class="hover:text-black transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm5.82 6.625H15.37c-.283 0-.598.37-.598.858v1.7h3.048l-.46 2.788H14.77V19h-2.88v-7.029H9.718V9.183h2.172V7.295c0-2.15 1.423-3.295 3.338-3.295.949 0 1.764.07 2 .102v2.523h-.001z"/></svg>
+            Behance
+          </a>
+          <a href="mailto:seuemail@exemplo.com" class="hover:text-black transition-colors flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            E-mail
+          </a>
+        </div>
+      </div>
+      <div class="border-t border-white/30 mt-8 pt-8 text-center text-xs text-gray-400">
+        © 2025 HQMJ – Help Me Quit My Job. Design SaaS sob demanda.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('interest-form').classList.add('hidden');
+      document.getElementById('form-success').classList.remove('hidden');
+    }
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-slide-up, .animate-fade-in').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#') return;
+        const el = document.querySelector(id);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
