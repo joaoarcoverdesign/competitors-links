@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arcoverdesign — AI-first design studio</title>
+<meta name="description" content="Design de produto com agilidade, qualidade e confiança. AI-first design studio 100% online."/>
+<script src="assets/resource_3fa48481346f.js"></script>
+<link href="assets/css2_d532a689d235.css" rel="stylesheet"/>
+<script>tailwind.config = { theme: { extend: {} } };</script>
+<style>
+:root {
+  --lime:    #C3FF3F;
+  --dark:    #0A0A0A;
+  --dark-s:  #141414;
+  --dark-c:  #1C1C1C;
+  --dark-b:  rgba(255,255,255,0.07);
+  --light:   #FFFFFF;
+  --light-s: #F7F7F7;
+  --light-c: #F0F0F0;
+  --light-b: rgba(0,0,0,0.07);
+}
+* { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--dark); color: #fff; margin: 0; }
+
+/* ── Ticker ─────────────────────────────────────── */
+@keyframes ticker     { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes ticker-rev { from{transform:translateX(-50%)} to{transform:translateX(0)} }
+.ticker-fwd { animation: ticker     28s linear infinite; white-space:nowrap; display:flex; align-items:center; }
+.ticker-rev { animation: ticker-rev 28s linear infinite; white-space:nowrap; display:flex; align-items:center; }
+
+/* ── Fade-in ─────────────────────────────────────── */
+@keyframes fade-up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.fade-up  { animation: fade-up 0.7s ease-out both; }
+.d1{animation-delay:.1s} .d2{animation-delay:.2s} .d3{animation-delay:.3s}
+
+/* ── Pulse dot ───────────────────────────────────── */
+@keyframes pdot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.5)} }
+.pdot { animation: pdot 2s ease-in-out infinite; }
+
+/* ── Nav underline ───────────────────────────────── */
+.nav-link { position:relative; }
+.nav-link::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:1px;
+  background:var(--lime); transform:scaleX(0); transition:transform .25s ease; transform-origin:left; }
+.nav-link:hover::after { transform:scaleX(1); }
+
+/* ── Service row (dark variant) ──────────────────── */
+.svc-dark  { border-bottom:1px solid var(--dark-b); transition:background .2s; }
+.svc-dark:hover  { background:rgba(195,255,63,.04); }
+
+/* ── Service row (light variant) ────────────────── */
+.svc-light { border-bottom:1px solid var(--light-b); transition:background .2s; }
+.svc-light:hover { background:rgba(0,0,0,.04); }
+
+/* ── FAQ ─────────────────────────────────────────── */
+details summary { cursor:pointer; list-style:none; }
+details summary::-webkit-details-marker { display:none; }
+details[open] summary .faq-icon { transform:rotate(45deg); }
+.faq-icon { transition:transform .25s ease; }
+
+/* ── Input placeholders ──────────────────────────── */
+input::placeholder, textarea::placeholder, select { color:rgba(255,255,255,.35); }
+</style>
+</head>
+
+<body>
+
+<!-- ════════════════════════════════════════════════
+     NAV  —  dark
+═════════════════════════════════════════════════ -->
+<header class="fixed top-0 left-0 right-0 z-50" style="background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--dark-b)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 gap-6">
+    <a href="#" class="flex items-center gap-2.5 flex-shrink-0">
+      <img src="../img/arcoverdelogo-V.png" alt="Arcoverdesign" class="w-8 h-8 rounded-xl object-cover"/>
+      <span class="text-sm font-semibold text-white">Arcover<span style="color:rgba(255,255,255,.35)">design</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-widest font-medium" style="color:rgba(255,255,255,.45)">
+      <a class="nav-link hover:text-white transition-colors" href="#servicos">Serviços</a>
+      <a class="nav-link hover:text-white transition-colors" href="#casos">Trabalhos</a>
+      <a class="nav-link hover:text-white transition-colors" href="#processo">Processo</a>
+      <a class="nav-link hover:text-white transition-colors" href="#planos">Planos</a>
+    </nav>
+    <a href="#contato" class="flex items-center gap-2 text-[12px] font-bold text-black rounded-full px-5 py-2.5 transition-all hover:opacity-90 hover:-translate-y-px flex-shrink-0" style="background:var(--lime)">
+      Começar agora
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════════════
+     HERO  —  dark
+═════════════════════════════════════════════════ -->
+<section style="background:var(--dark)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 pt-36 pb-20 md:pt-44 md:pb-28">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left -->
+      <div class="fade-up">
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 text-xs font-semibold tracking-widest uppercase" style="border:1px solid var(--dark-b);color:rgba(255,255,255,.45)">
+          <span class="w-1.5 h-1.5 rounded-full pdot" style="background:var(--lime)"></span>
+          AI-first design studio
+        </div>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-[1.0] mb-8 text-white">
+          Design de produto<br/>com agilidade e<br/><span style="color:var(--lime)">confiança.</span>
+        </h1>
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="text-[11px] font-medium rounded-full px-3.5 py-1.5" style="background:var(--dark-c);color:rgba(255,255,255,.45);border:1px solid var(--dark-b)">UI Design</span>
+          <span class="text-[11px] font-medium rounded-full px-3.5 py-1.5" style="background:var(--dark-c);color:rgba(255,255,255,.45);border:1px solid var(--dark-b)">UX &amp; Produto</span>
+          <span class="text-[11px] font-medium rounded-full px-3.5 py-1.5" style="background:var(--dark-c);color:rgba(255,255,255,.45);border:1px solid var(--dark-b)">Branding</span>
+          <span class="text-[11px] font-medium rounded-full px-3.5 py-1.5" style="background:var(--dark-c);color:rgba(255,255,255,.45);border:1px solid var(--dark-b)">Design System</span>
+          <span class="text-[11px] font-medium rounded-full px-3.5 py-1.5" style="background:var(--dark-c);color:rgba(255,255,255,.45);border:1px solid var(--dark-b)">AI-powered</span>
+        </div>
+        <p class="text-sm leading-relaxed mb-10 max-w-md" style="color:rgba(255,255,255,.45)">
+          Combinamos design humano com inteligência artificial para entregar interfaces e experiências digitais mais rápido, com mais consistência — 100% online e assíncrono.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-14">
+          <a href="#planos" class="flex items-center gap-2 group font-bold text-sm text-black rounded-full px-7 py-3.5 transition-all hover:opacity-90 hover:-translate-y-px" style="background:var(--lime)">
+            Quero começar do zero
+            <svg class="group-hover:translate-x-0.5 transition-transform" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#casos" class="flex items-center gap-2 font-semibold text-sm text-white rounded-full px-7 py-3.5 transition-all hover:bg-white/10" style="border:1px solid rgba(255,255,255,.15)">Ver trabalhos</a>
+        </div>
+        <div class="flex gap-8 pt-8" style="border-top:1px solid var(--dark-b)">
+          <div><div class="text-3xl font-extrabold tracking-tighter" style="color:var(--lime)">24+</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.35)">projetos entregues</div></div>
+          <div style="width:1px;background:var(--dark-b)"></div>
+          <div><div class="text-3xl font-extrabold tracking-tighter" style="color:var(--lime)">48h</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.35)">turnaround médio</div></div>
+          <div style="width:1px;background:var(--dark-b)"></div>
+          <div><div class="text-3xl font-extrabold tracking-tighter" style="color:var(--lime)">∞</div><div class="text-xs mt-1" style="color:rgba(255,255,255,.35)">revisões inclusas</div></div>
+        </div>
+      </div>
+
+      <!-- Right card -->
+      <div class="relative fade-up d2">
+        <div class="rounded-3xl overflow-hidden relative" style="background:var(--dark-c);border:1px solid var(--dark-b);aspect-ratio:4/5">
+          <img src="assets/a5387a0b-52c6-40c2-b3be-ef8632_5ea829d0de5b.webp" alt="" class="w-full h-full object-cover opacity-50"/>
+          <div class="absolute inset-0 p-7 flex flex-col justify-between" style="background:linear-gradient(to top, rgba(10,10,10,.95) 35%, transparent)">
+            <div class="flex justify-between">
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-black rounded-full px-3 py-1.5" style="background:var(--lime)">AI ✦</span>
+            </div>
+            <div class="rounded-2xl p-5" style="background:rgba(10,10,10,.8);backdrop-filter:blur(12px);border:1px solid var(--dark-b)">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-[10px] font-semibold uppercase tracking-widest" style="color:rgba(255,255,255,.35)">Projeto ativo</span>
+                <span class="text-[11px] font-bold text-black rounded-full px-2.5 py-1" style="background:var(--lime)">Em andamento</span>
+              </div>
+              <div class="text-sm font-semibold text-white mb-3">UI Design · App Móvel</div>
+              <div class="w-full rounded-full overflow-hidden mb-2" style="height:3px;background:rgba(255,255,255,.1)">
+                <div class="h-full rounded-full" style="width:75%;background:var(--lime)"></div>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[10px]" style="color:rgba(255,255,255,.3)">75% concluído</span>
+                <span class="text-[10px] font-semibold" style="color:var(--lime)">Design Review</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -bottom-10 -left-10 w-48 h-48 rounded-full blur-3xl -z-10 pointer-events-none" style="background:rgba(195,255,63,.07)"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     TICKER 1  —  lime
+═════════════════════════════════════════════════ -->
+<div class="overflow-hidden py-4" style="background:var(--lime)">
+  <div class="ticker-fwd">
+    <span class="inline-flex items-center gap-4 text-black text-sm font-bold uppercase tracking-widest px-8">UI Design <span class="opacity-30">✦</span> UX Design <span class="opacity-30">✦</span> Branding <span class="opacity-30">✦</span> Design System <span class="opacity-30">✦</span> AI-powered <span class="opacity-30">✦</span> Produto Digital <span class="opacity-30">✦</span> 100% Online <span class="opacity-30">✦</span> Entregas em 48h <span class="opacity-30">✦</span></span>
+    <span class="inline-flex items-center gap-4 text-black text-sm font-bold uppercase tracking-widest px-8">UI Design <span class="opacity-30">✦</span> UX Design <span class="opacity-30">✦</span> Branding <span class="opacity-30">✦</span> Design System <span class="opacity-30">✦</span> AI-powered <span class="opacity-30">✦</span> Produto Digital <span class="opacity-30">✦</span> 100% Online <span class="opacity-30">✦</span> Entregas em 48h <span class="opacity-30">✦</span></span>
+    <span class="inline-flex items-center gap-4 text-black text-sm font-bold uppercase tracking-widest px-8">UI Design <span class="opacity-30">✦</span> UX Design <span class="opacity-30">✦</span> Branding <span class="opacity-30">✦</span> Design System <span class="opacity-30">✦</span> AI-powered <span class="opacity-30">✦</span> Produto Digital <span class="opacity-30">✦</span> 100% Online <span class="opacity-30">✦</span> Entregas em 48h <span class="opacity-30">✦</span></span>
+    <span class="inline-flex items-center gap-4 text-black text-sm font-bold uppercase tracking-widest px-8">UI Design <span class="opacity-30">✦</span> UX Design <span class="opacity-30">✦</span> Branding <span class="opacity-30">✦</span> Design System <span class="opacity-30">✦</span> AI-powered <span class="opacity-30">✦</span> Produto Digital <span class="opacity-30">✦</span> 100% Online <span class="opacity-30">✦</span> Entregas em 48h <span class="opacity-30">✦</span></span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     SERVIÇOS  —  light
+═════════════════════════════════════════════════ -->
+<section id="servicos" class="py-24" style="background:var(--light)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 mb-16">
+      <div class="lg:col-span-5">
+        <span class="text-[11px] font-semibold uppercase tracking-widest mb-4 block" style="color:var(--lime);-webkit-text-stroke:.5px #888">Nossos serviços</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter leading-[1.05] text-black">
+          Descubra nossas<br/><span style="color:var(--dark)">Soluções de <span style="color:var(--lime);-webkit-text-stroke:.8px #999">Design.</span></span>
+        </h2>
+      </div>
+      <div class="lg:col-span-7 flex items-end">
+        <p class="text-sm leading-relaxed max-w-lg" style="color:rgba(0,0,0,.5)">
+          Combinamos design humano e inteligência artificial para entregar experiências digitais completas — do branding ao produto final — com rapidez e qualidade de nível sênior.
+        </p>
+      </div>
+    </div>
+
+    <!-- 01 -->
+    <div class="svc-light group cursor-default py-7 flex items-center gap-6 px-3 rounded-xl">
+      <span class="text-4xl font-extrabold tracking-tighter w-16 flex-shrink-0" style="color:rgba(0,0,0,.06)">01</span>
+      <div class="flex-1">
+        <div class="text-xl font-bold text-black mb-1">UI Design de Produto</div>
+        <div class="text-xs flex flex-wrap gap-2 mt-1.5" style="color:rgba(0,0,0,.4)">
+          <span>Web App</span><span>·</span><span>Mobile App</span><span>·</span><span>Dashboard</span><span>·</span><span>Landing Page</span>
+        </div>
+      </div>
+      <a href="#planos" class="hidden md:flex text-[11px] font-bold text-black rounded-full px-4 py-2 opacity-0 group-hover:opacity-100 transition-opacity" style="background:var(--lime)">Começar →</a>
+      <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c);border:1px solid var(--light-b)">
+        <svg width="16" height="16" fill="none" stroke="#555" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="svc-light group cursor-default py-7 flex items-center gap-6 px-3 rounded-xl">
+      <span class="text-4xl font-extrabold tracking-tighter w-16 flex-shrink-0" style="color:rgba(0,0,0,.06)">02</span>
+      <div class="flex-1">
+        <div class="text-xl font-bold text-black mb-1">UX Design e Auditoria</div>
+        <div class="text-xs flex flex-wrap gap-2 mt-1.5" style="color:rgba(0,0,0,.4)">
+          <span>Mapeamento de fluxos</span><span>·</span><span>Redesign</span><span>·</span><span>Pesquisa de usuário</span>
+        </div>
+      </div>
+      <a href="#planos" class="hidden md:flex text-[11px] font-bold text-black rounded-full px-4 py-2 opacity-0 group-hover:opacity-100 transition-opacity" style="background:var(--lime)">Começar →</a>
+      <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c);border:1px solid var(--light-b)">
+        <svg width="16" height="16" fill="none" stroke="#555" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="svc-light group cursor-default py-7 flex items-center gap-6 px-3 rounded-xl">
+      <span class="text-4xl font-extrabold tracking-tighter w-16 flex-shrink-0" style="color:rgba(0,0,0,.06)">03</span>
+      <div class="flex-1">
+        <div class="text-xl font-bold text-black mb-1">Branding e Identidade Visual</div>
+        <div class="text-xs flex flex-wrap gap-2 mt-1.5" style="color:rgba(0,0,0,.4)">
+          <span>Logo</span><span>·</span><span>Paleta e tipografia</span><span>·</span><span>Guia de marca</span>
+        </div>
+      </div>
+      <a href="#planos" class="hidden md:flex text-[11px] font-bold text-black rounded-full px-4 py-2 opacity-0 group-hover:opacity-100 transition-opacity" style="background:var(--lime)">Começar →</a>
+      <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c);border:1px solid var(--light-b)">
+        <svg width="16" height="16" fill="none" stroke="#555" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="svc-light group cursor-default py-7 flex items-center gap-6 px-3 rounded-xl">
+      <span class="text-4xl font-extrabold tracking-tighter w-16 flex-shrink-0" style="color:rgba(0,0,0,.06)">04</span>
+      <div class="flex-1">
+        <div class="text-xl font-bold text-black mb-1">Design System</div>
+        <div class="text-xs flex flex-wrap gap-2 mt-1.5" style="color:rgba(0,0,0,.4)">
+          <span>Tokens</span><span>·</span><span>Componentes</span><span>·</span><span>Documentação</span><span>·</span><span>Handoff</span>
+        </div>
+      </div>
+      <a href="#planos" class="hidden md:flex text-[11px] font-bold text-black rounded-full px-4 py-2 opacity-0 group-hover:opacity-100 transition-opacity" style="background:var(--lime)">Começar →</a>
+      <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c);border:1px solid var(--light-b)">
+        <svg width="16" height="16" fill="none" stroke="#555" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="group cursor-default py-7 flex items-center gap-6 px-3 rounded-xl">
+      <span class="text-4xl font-extrabold tracking-tighter w-16 flex-shrink-0" style="color:rgba(0,0,0,.06)">05</span>
+      <div class="flex-1">
+        <div class="text-xl font-bold text-black mb-1">Landing Page e Sites</div>
+        <div class="text-xs flex flex-wrap gap-2 mt-1.5" style="color:rgba(0,0,0,.4)">
+          <span>Institucional</span><span>·</span><span>Produto</span><span>·</span><span>Pitch deck</span><span>·</span><span>Entrega em 27 dias</span>
+        </div>
+      </div>
+      <a href="#planos" class="hidden md:flex text-[11px] font-bold text-black rounded-full px-4 py-2 opacity-0 group-hover:opacity-100 transition-opacity" style="background:var(--lime)">Começar →</a>
+      <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c);border:1px solid var(--light-b)">
+        <svg width="16" height="16" fill="none" stroke="#555" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     SOBRE  —  dark
+═════════════════════════════════════════════════ -->
+<section id="sobre" style="background:var(--dark)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-6">
+    <div class="rounded-3xl overflow-hidden" style="background:var(--dark-s);border:1px solid var(--dark-b)">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <div class="relative" style="min-height:420px">
+          <img src="assets/b3f17582-5cb8-4efd-895a-b59c93_5343306160e6.webp" alt="" class="w-full h-full object-cover absolute inset-0"/>
+          <div class="absolute inset-0" style="background:linear-gradient(to right, transparent 55%, var(--dark-s))"></div>
+          <div class="absolute bottom-8 left-8 rounded-2xl p-5" style="background:rgba(10,10,10,.8);backdrop-filter:blur(10px);border:1px solid var(--dark-b)">
+            <div class="text-5xl font-extrabold tracking-tighter leading-none" style="color:var(--lime)">AI</div>
+            <div class="text-xs font-semibold mt-1" style="color:rgba(255,255,255,.4)">em todo o processo</div>
+          </div>
+        </div>
+        <div class="p-10 md:p-14 flex flex-col justify-center">
+          <span class="text-[11px] font-semibold uppercase tracking-widest mb-5 block" style="color:var(--lime)">Por que a Arcoverdesign</span>
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter leading-[1.05] mb-6 text-white">
+            Estúdio de design<br/><span style="color:var(--lime)">AI-first.</span>
+          </h2>
+          <p class="text-sm leading-relaxed mb-8" style="color:rgba(255,255,255,.45)">
+            Combinamos design humano com IA para entregar interfaces mais rápido e com mais consistência. Sem reuniões, 100% online e assíncrono.
+          </p>
+          <div class="space-y-3.5 mb-10">
+            <div class="flex items-center gap-3 text-sm text-white">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--lime)"><svg width="10" height="10" fill="none" stroke="#0A0A0A" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Entregas em até 48h por solicitação
+            </div>
+            <div class="flex items-center gap-3 text-sm text-white">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--lime)"><svg width="10" height="10" fill="none" stroke="#0A0A0A" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Solicitações e revisões ilimitadas
+            </div>
+            <div class="flex items-center gap-3 text-sm text-white">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--lime)"><svg width="10" height="10" fill="none" stroke="#0A0A0A" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Pause ou cancele quando quiser
+            </div>
+            <div class="flex items-center gap-3 text-sm text-white">
+              <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--lime)"><svg width="10" height="10" fill="none" stroke="#0A0A0A" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Nível sênior com custo de assinatura
+            </div>
+          </div>
+          <a href="#planos" class="inline-flex items-center gap-2 group font-bold text-sm text-black rounded-full px-7 py-3.5 w-fit transition-all hover:opacity-90" style="background:var(--lime)">
+            Ver planos
+            <svg class="group-hover:translate-x-0.5 transition-transform" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ════════════════════════════════════════════════
+     PROCESSO  —  light
+═════════════════════════════════════════════════ -->
+<section id="processo" class="py-24" style="background:var(--light)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="text-center mb-16">
+      <span class="text-[11px] font-semibold uppercase tracking-widest mb-4 block" style="color:rgba(0,0,0,.35)">Como trabalhamos</span>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-black">Nosso Processo de Trabalho</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+      <div class="rounded-3xl p-8 relative overflow-hidden" style="background:var(--light-s);border:1px solid var(--light-b)">
+        <div class="text-6xl font-extrabold tracking-tighter mb-6 leading-none" style="color:rgba(0,0,0,.05)">01</div>
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(195,255,63,.2)">
+          <svg width="20" height="20" fill="none" stroke="#4a7c00" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-black mb-3">Briefing e Alinhamento</h3>
+        <p class="text-sm leading-relaxed" style="color:rgba(0,0,0,.45)">Você envia o briefing com escopo, referências e prazo. Nenhuma reunião necessária.</p>
+      </div>
+
+      <div class="rounded-3xl p-8 relative overflow-hidden" style="background:var(--dark);border:1px solid var(--dark-b)">
+        <div class="text-6xl font-extrabold tracking-tighter mb-6 leading-none" style="color:rgba(255,255,255,.04)">02</div>
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(195,255,63,.12)">
+          <svg width="20" height="20" fill="none" stroke="#C3FF3F" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Design e Prototipagem</h3>
+        <p class="text-sm leading-relaxed" style="color:rgba(255,255,255,.45)">Em até 48h você recebe o design para revisão no Figma — com IA acelerando cada etapa.</p>
+      </div>
+
+      <div class="rounded-3xl p-8 relative overflow-hidden" style="background:var(--light-s);border:1px solid var(--light-b)">
+        <div class="text-6xl font-extrabold tracking-tighter mb-6 leading-none" style="color:rgba(0,0,0,.05)">03</div>
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(195,255,63,.2)">
+          <svg width="20" height="20" fill="none" stroke="#4a7c00" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-black mb-3">Revisão e Entrega</h3>
+        <p class="text-sm leading-relaxed" style="color:rgba(0,0,0,.45)">Revisões ilimitadas. Arquivos organizados, handoff completo e documentação para o time.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ════════════════════════════════════════════════
+     CASOS  —  dark
+═════════════════════════════════════════════════ -->
+<section id="casos" class="py-24" style="background:var(--dark)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <span class="text-[11px] font-semibold uppercase tracking-widest mb-4 block" style="color:var(--lime)">Nossos projetos</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-white">Trabalhos recentes<br/>que fizeram diferença.</h2>
+      </div>
+      <a href="#" class="hidden md:flex items-center gap-2 group font-bold text-sm text-black rounded-full px-6 py-3 transition-all hover:opacity-90" style="background:var(--lime)">
+        Ver portfólio
+        <svg class="group-hover:translate-x-0.5 transition-transform" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <!-- Case 01 -->
+      <div class="rounded-3xl overflow-hidden relative group" style="background:var(--dark-c);border:1px solid var(--dark-b);aspect-ratio:4/3">
+        <img src="assets/96e3ccfa-3799-4c9c-9f2a-263c0f_f43320a4382a.webp" alt="" class="w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity"/>
+        <div class="absolute inset-0 p-7 flex flex-col justify-between" style="background:linear-gradient(to top,rgba(10,10,10,.95) 40%,transparent)">
+          <div class="flex justify-between">
+            <span class="text-[10px] font-bold uppercase tracking-widest rounded-full px-3 py-1.5" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);backdrop-filter:blur(8px)">Consolidado</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest text-black rounded-full px-3 py-1.5" style="background:var(--lime)">QConcursos</span>
+          </div>
+          <div>
+            <h3 class="text-2xl font-extrabold tracking-tighter text-white mb-3">De regional a líder nacional</h3>
+            <div class="flex gap-6">
+              <div><div class="text-2xl font-extrabold" style="color:var(--lime)">16×</div><div class="text-[10px]" style="color:rgba(255,255,255,.35)">crescimento</div></div>
+              <div><div class="text-2xl font-extrabold" style="color:var(--lime)">10M</div><div class="text-[10px]" style="color:rgba(255,255,255,.35)">usuários ativos</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div class="rounded-3xl p-7 flex-1" style="background:var(--dark-c);border:1px solid var(--dark-b)">
+          <div class="flex justify-between items-start mb-5">
+            <span class="text-[10px] font-bold uppercase tracking-widest" style="color:rgba(255,255,255,.3)">Case 02 · My Benefits</span>
+            <span class="text-[10px] font-bold uppercase tracking-widest rounded-full px-3 py-1" style="background:rgba(195,255,63,.1);color:var(--lime);border:1px solid rgba(195,255,63,.2)">Consolidado</span>
+          </div>
+          <h3 class="text-xl font-extrabold tracking-tighter text-white mb-2">Modernização que virou resultado</h3>
+          <p class="text-xs leading-relaxed mb-4" style="color:rgba(255,255,255,.35)">Redesenhamos cadastro e assinatura com foco em redução de fricção.</p>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-extrabold tracking-tighter" style="color:var(--lime)">↓43%</span>
+            <span class="text-xs" style="color:rgba(255,255,255,.35)">no tempo de cadastro</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div class="rounded-3xl p-6" style="background:var(--dark-c);border:1px solid var(--dark-b)">
+            <span class="text-[10px] font-bold uppercase tracking-widest block mb-3" style="color:rgba(255,255,255,.3)">Case 03</span>
+            <h3 class="text-base font-extrabold tracking-tight text-white mb-3">Do zero ao ar em 4 semanas</h3>
+            <div class="text-2xl font-extrabold" style="color:var(--lime)">27 dias</div>
+            <div class="text-[10px] mt-1" style="color:rgba(255,255,255,.35)">site no ar</div>
+          </div>
+          <div class="rounded-3xl p-6" style="background:var(--dark-c);border:1px solid var(--dark-b)">
+            <span class="text-[10px] font-bold uppercase tracking-widest block mb-3" style="color:rgba(255,255,255,.3)">Case 04</span>
+            <h3 class="text-base font-extrabold tracking-tight text-white mb-3">Design system do zero</h3>
+            <div class="text-2xl font-extrabold" style="color:var(--lime)">↓60%</div>
+            <div class="text-[10px] mt-1" style="color:rgba(255,255,255,.35)">entrega de features</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     TICKER 4  —  lime  (reversed)
+═════════════════════════════════════════════════ -->
+<div class="overflow-hidden py-4" style="background:var(--lime)">
+  <div class="ticker-rev">
+    <span class="inline-flex items-center gap-4 text-black text-sm font-bold uppercase tracking-widest px-8">QConcursos <span class="opacity-30">✦</span> My Benefits Advice <span class="opacity-30">✦</span> Valt Network <span class="opacity-30">✦</span> Worwave <span class="opacity-30">✦</span> Jalasoft <span class="opacity-30">✦</span> Jala University <span class="opacity-30">✦</span> Banco do Brasil <span class="opacity-30">✦</span> Rádio Tupi <span class="opacity-30">✦</span></span>
+    <span class="inline-flex items-center gap-4 text-black text-sm font-bold uppercase tracking-widest px-8">QConcursos <span class="opacity-30">✦</span> My Benefits Advice <span class="opacity-30">✦</span> Valt Network <span class="opacity-30">✦</span> Worwave <span class="opacity-30">✦</span> Jalasoft <span class="opacity-30">✦</span> Jala University <span class="opacity-30">✦</span> Banco do Brasil <span class="opacity-30">✦</span> Rádio Tupi <span class="opacity-30">✦</span></span>
+    <span class="inline-flex items-center gap-4 text-black text-sm font-bold uppercase tracking-widest px-8">QConcursos <span class="opacity-30">✦</span> My Benefits Advice <span class="opacity-30">✦</span> Valt Network <span class="opacity-30">✦</span> Worwave <span class="opacity-30">✦</span> Jalasoft <span class="opacity-30">✦</span> Jala University <span class="opacity-30">✦</span> Banco do Brasil <span class="opacity-30">✦</span> Rádio Tupi <span class="opacity-30">✦</span></span>
+    <span class="inline-flex items-center gap-4 text-black text-sm font-bold uppercase tracking-widest px-8">QConcursos <span class="opacity-30">✦</span> My Benefits Advice <span class="opacity-30">✦</span> Valt Network <span class="opacity-30">✦</span> Worwave <span class="opacity-30">✦</span> Jalasoft <span class="opacity-30">✦</span> Jala University <span class="opacity-30">✦</span> Banco do Brasil <span class="opacity-30">✦</span> Rádio Tupi <span class="opacity-30">✦</span></span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     PLANOS  —  light
+═════════════════════════════════════════════════ -->
+<section id="planos" class="py-24" style="background:var(--light)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="text-center mb-16">
+      <span class="text-[11px] font-semibold uppercase tracking-widest mb-4 block" style="color:rgba(0,0,0,.35)">Planos</span>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-black">Escolha como quer<br/><span style="color:var(--dark)">trabalhar com a gente.</span></h2>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+      <!-- Main plan — lime card -->
+      <div class="lg:col-span-7 rounded-3xl p-8 md:p-10 relative overflow-hidden" style="background:var(--lime)">
+        <div class="absolute top-0 right-0 w-72 h-72 rounded-full blur-3xl pointer-events-none" style="background:rgba(255,255,255,.2)"></div>
+        <div class="relative z-10">
+          <div class="flex items-center justify-between mb-8">
+            <span class="text-[11px] font-extrabold uppercase tracking-widest" style="color:rgba(0,0,0,.5)">Plano em destaque</span>
+            <span class="flex items-center gap-1.5 text-[11px] font-bold text-black rounded-full px-3 py-1" style="background:rgba(0,0,0,.1)">
+              <span class="w-1.5 h-1.5 rounded-full bg-black opacity-50"></span>Ativo agora
+            </span>
+          </div>
+          <div class="mb-1">
+            <span class="text-6xl font-extrabold tracking-tighter text-black">$1.490</span>
+            <span class="text-black/50 font-medium ml-2">/mês</span>
+          </div>
+          <p class="text-sm font-medium mb-8" style="color:rgba(0,0,0,.5)">Cancele quando quiser. Sem contrato longo.</p>
+          <div class="grid grid-cols-2 gap-y-3 gap-x-6 mb-10">
+            <div class="flex items-center gap-2 text-sm font-medium text-black"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Solicitações ilimitadas</div>
+            <div class="flex items-center gap-2 text-sm font-medium text-black"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Revisões ilimitadas</div>
+            <div class="flex items-center gap-2 text-sm font-medium text-black"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Turnaround de até 48h</div>
+            <div class="flex items-center gap-2 text-sm font-medium text-black"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>UI, UX, Branding, Produto</div>
+            <div class="flex items-center gap-2 text-sm font-medium text-black"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>IA integrada ao processo</div>
+            <div class="flex items-center gap-2 text-sm font-medium text-black"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>100% online e assíncrono</div>
+            <div class="flex items-center gap-2 text-sm font-medium text-black col-span-2"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Pause ou cancele a qualquer momento</div>
+          </div>
+          <a href="#contato" class="flex items-center justify-center gap-2 group font-extrabold text-sm text-white rounded-full py-4 px-8 w-full transition-all hover:opacity-90" style="background:var(--dark)">
+            Assinar agora
+            <svg class="group-hover:translate-x-0.5 transition-transform" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 flex flex-col gap-4">
+        <div class="flex-1 rounded-3xl p-8 flex flex-col justify-between" style="background:var(--light-s);border:1px solid var(--light-b)">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-widest block mb-5" style="color:rgba(0,0,0,.35)">Por projeto</span>
+            <h3 class="text-2xl font-extrabold tracking-tight text-black mb-3">Prefere pagar por projeto?</h3>
+            <p class="text-sm leading-relaxed mb-6" style="color:rgba(0,0,0,.45)">Briefing com escopo definido — respondemos com proposta em até 24h.</p>
+            <div class="space-y-2 mb-8">
+              <div class="flex items-center gap-2 text-sm" style="color:rgba(0,0,0,.5)"><span style="color:var(--dark);font-weight:700">→</span> Redesign pontual</div>
+              <div class="flex items-center gap-2 text-sm" style="color:rgba(0,0,0,.5)"><span style="color:var(--dark);font-weight:700">→</span> Landing page ou site</div>
+              <div class="flex items-center gap-2 text-sm" style="color:rgba(0,0,0,.5)"><span style="color:var(--dark);font-weight:700">→</span> Quem quer testar antes de assinar</div>
+            </div>
+          </div>
+          <a href="#contato" class="flex items-center justify-center gap-2 group font-bold text-sm text-black rounded-full py-3.5 px-6 w-full transition-all hover:bg-black hover:text-white" style="border:1.5px solid rgba(0,0,0,.2)">
+            Enviar briefing
+            <svg class="group-hover:translate-x-0.5 transition-transform" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="rounded-2xl p-5" style="background:var(--light-c);border:1px solid var(--light-b)">
+          <p class="text-xs leading-relaxed" style="color:rgba(0,0,0,.45)">Designer sênior CLT custa <strong class="text-black">R$10–18k/mês</strong>. A Arcoverdesign entrega o mesmo nível com IA — por uma fração do custo.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     CONTATO  —  dark
+═════════════════════════════════════════════════ -->
+<section id="contato" style="background:var(--dark)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-6">
+    <div class="rounded-3xl p-10 md:p-16" style="background:var(--dark-s);border:1px solid var(--dark-b)">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <span class="text-[11px] font-semibold uppercase tracking-widest mb-5 block" style="color:var(--lime)">Vamos criar juntos</span>
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter leading-[1.05] mb-6 text-white">
+            Pronto para ter design<br/>que <span style="color:var(--lime)">funciona de verdade?</span>
+          </h2>
+          <p class="text-sm leading-relaxed mb-8" style="color:rgba(255,255,255,.4)">Seja para começar do zero ou evoluir o que já tem. Sem reuniões. Sem contrato longo.</p>
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-2.5 text-xs" style="color:rgba(255,255,255,.4)"><span class="w-1.5 h-1.5 rounded-full pdot" style="background:var(--lime)"></span>Resposta em até 24h</div>
+            <div class="flex items-center gap-2.5 text-xs" style="color:rgba(255,255,255,.4)"><span class="w-1.5 h-1.5 rounded-full" style="background:var(--lime)"></span>Sem reunião obrigatória</div>
+            <div class="flex items-center gap-2.5 text-xs" style="color:rgba(255,255,255,.4)"><span class="w-1.5 h-1.5 rounded-full" style="background:var(--lime)"></span>100% assíncrono</div>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <div class="grid grid-cols-2 gap-3">
+            <input type="text" placeholder="Seu nome" class="w-full rounded-2xl px-5 py-4 text-sm text-white outline-none" style="background:var(--dark-c);border:1px solid var(--dark-b)" onfocus="this.style.borderColor='#C3FF3F'" onblur="this.style.borderColor='rgba(255,255,255,.07)'"/>
+            <input type="email" placeholder="Seu e-mail" class="w-full rounded-2xl px-5 py-4 text-sm text-white outline-none" style="background:var(--dark-c);border:1px solid var(--dark-b)" onfocus="this.style.borderColor='#C3FF3F'" onblur="this.style.borderColor='rgba(255,255,255,.07)'"/>
+          </div>
+          <select class="w-full rounded-2xl px-5 py-4 text-sm outline-none appearance-none" style="background:var(--dark-c);border:1px solid var(--dark-b);color:rgba(255,255,255,.4)" onfocus="this.style.borderColor='#C3FF3F'" onblur="this.style.borderColor='rgba(255,255,255,.07)'">
+            <option>Tipo de projeto</option>
+            <option>UI Design de Produto</option>
+            <option>UX Design / Auditoria</option>
+            <option>Branding e Identidade</option>
+            <option>Design System</option>
+            <option>Landing Page / Site</option>
+          </select>
+          <textarea rows="4" placeholder="Descreva brevemente o que você precisa..." class="w-full rounded-2xl px-5 py-4 text-sm text-white outline-none resize-none" style="background:var(--dark-c);border:1px solid var(--dark-b)" onfocus="this.style.borderColor='#C3FF3F'" onblur="this.style.borderColor='rgba(255,255,255,.07)'"></textarea>
+          <button class="w-full flex items-center justify-center gap-2 font-extrabold text-sm text-black rounded-full py-4 transition-all hover:opacity-90 hover:-translate-y-px" style="background:var(--lime)">
+            Enviar briefing
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p class="text-center text-[11px]" style="color:rgba(255,255,255,.2)">Sem compromisso. Respondemos em até 24h.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     FAQ  —  light
+═════════════════════════════════════════════════ -->
+<section id="faq" class="py-24" style="background:var(--light)">
+  <div class="max-w-4xl mx-auto px-6 md:px-10">
+    <div class="text-center mb-14">
+      <span class="text-[11px] font-semibold uppercase tracking-widest mb-4 block" style="color:rgba(0,0,0,.35)">FAQ</span>
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-black">Perguntas? Estamos aqui.</h2>
+    </div>
+    <div class="space-y-2">
+
+      <details class="rounded-2xl overflow-hidden" style="background:var(--light-s);border:1px solid var(--light-b)">
+        <summary class="flex items-center justify-between px-6 py-5 text-sm font-semibold text-black">
+          O que exatamente a Arcoverdesign oferece?
+          <span class="faq-icon w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c)">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed" style="color:rgba(0,0,0,.5)">Design de produto completo: UI, UX, branding, design systems e landing pages. Tudo 100% online, assíncrono e com IA integrada em cada etapa.</div>
+      </details>
+
+      <details class="rounded-2xl overflow-hidden" style="background:var(--light-s);border:1px solid var(--light-b)">
+        <summary class="flex items-center justify-between px-6 py-5 text-sm font-semibold text-black">
+          Qual é o turnaround de uma entrega?
+          <span class="faq-icon w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c)">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed" style="color:rgba(0,0,0,.5)">A maioria das entregas é feita em até 48 horas úteis. Projetos maiores têm prazos combinados antes de começar.</div>
+      </details>
+
+      <details class="rounded-2xl overflow-hidden" style="background:var(--light-s);border:1px solid var(--light-b)">
+        <summary class="flex items-center justify-between px-6 py-5 text-sm font-semibold text-black">
+          Como funciona o processo de revisão?
+          <span class="faq-icon w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c)">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed" style="color:rgba(0,0,0,.5)">Revisões são ilimitadas. Você comenta diretamente no Figma e ajustamos até ficar perfeito. Sem contador de rounds.</div>
+      </details>
+
+      <details class="rounded-2xl overflow-hidden" style="background:var(--light-s);border:1px solid var(--light-b)">
+        <summary class="flex items-center justify-between px-6 py-5 text-sm font-semibold text-black">
+          Posso pausar ou cancelar a assinatura?
+          <span class="faq-icon w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c)">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed" style="color:rgba(0,0,0,.5)">Sim. Pause ou cancele a qualquer momento, sem multa e sem burocracia.</div>
+      </details>
+
+      <details class="rounded-2xl overflow-hidden" style="background:var(--light-s);border:1px solid var(--light-b)">
+        <summary class="flex items-center justify-between px-6 py-5 text-sm font-semibold text-black">
+          Como a IA está integrada no processo?
+          <span class="faq-icon w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style="background:var(--light-c)">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </summary>
+        <div class="px-6 pb-5 text-sm leading-relaxed" style="color:rgba(0,0,0,.5)">IA em pesquisa, variações visuais e análise de UX — sempre com direção criativa e revisão humana sênior em cada entrega.</div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════
+     FOOTER  —  dark
+═════════════════════════════════════════════════ -->
+<footer style="background:var(--dark-s);border-top:1px solid var(--dark-b)">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <a href="#" class="flex items-center gap-2.5 mb-5">
+          <img src="../img/arcoverdelogo-V.png" alt="Arcoverdesign" class="w-9 h-9 rounded-xl object-cover"/>
+          <span class="text-base font-semibold text-white">Arcover<span style="color:rgba(255,255,255,.3)">design</span></span>
+        </a>
+        <p class="text-sm leading-relaxed max-w-xs" style="color:rgba(255,255,255,.35)">AI-first design studio. Design de produto com agilidade, qualidade e confiança — 100% online e assíncrono.</p>
+      </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest mb-5" style="color:rgba(255,255,255,.2)">Serviços</div>
+        <div class="space-y-3 text-sm" style="color:rgba(255,255,255,.4)">
+          <div><a href="#servicos" class="hover:text-white transition-colors">UI Design</a></div>
+          <div><a href="#servicos" class="hover:text-white transition-colors">UX &amp; Auditoria</a></div>
+          <div><a href="#servicos" class="hover:text-white transition-colors">Branding</a></div>
+          <div><a href="#servicos" class="hover:text-white transition-colors">Design System</a></div>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest mb-5" style="color:rgba(255,255,255,.2)">Empresa</div>
+        <div class="space-y-3 text-sm" style="color:rgba(255,255,255,.4)">
+          <div><a href="#casos" class="hover:text-white transition-colors">Trabalhos</a></div>
+          <div><a href="#planos" class="hover:text-white transition-colors">Planos</a></div>
+          <div><a href="#contato" class="hover:text-white transition-colors">Contato</a></div>
+          <div><a href="#faq" class="hover:text-white transition-colors">FAQ</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8" style="border-top:1px solid var(--dark-b)">
+      <p class="text-xs" style="color:rgba(255,255,255,.2)">© 2026 Arcoverdesign. Todos os direitos reservados.</p>
+      <a href="#planos" class="flex items-center gap-2 font-bold text-xs text-black rounded-full px-5 py-2.5 transition-all hover:opacity-90" style="background:var(--lime)">
+        Começar agora →
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
